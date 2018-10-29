@@ -7,35 +7,47 @@ pipeline {
     agent any
     stages {
         stage('Checkout') {
-            checkout scm
+            steps {
+                checkout scm
+            }
         }
 
         stage('Install'){
-            sh "yarn install"
+            steps {            
+                sh "yarn install"
+            }
         }
 
         stage('Build'){
-            sh "yarn install"
-            sh "yarn build"
+            steps {            
+                sh "yarn install"
+                sh "yarn build"
+            }
         }
 
         stage('TestingTools'){
-            sh "yarn add jest jest-cli puppeteer faker"
+            steps {            
+                sh "yarn add jest jest-cli puppeteer faker"
+            }
         }
 
         stage('HttpTests'){
-            sh "cd build"
-            sh "http-server -p 9000. > /dev/null 2>&1 &"
-            sh "sleep 5"
-            sh "curl -s -I http://localhost:9000/"
-            sh "yarn test --detectOpenHandles"
-            sh "echo done!!!"        
+            steps {            
+                sh "cd build"
+                sh "http-server -p 9000. > /dev/null 2>&1 &"
+                sh "sleep 5"
+                sh "curl -s -I http://localhost:9000/"
+                sh "yarn test --detectOpenHandles"
+                sh "echo done!!!"        
+            }
         }
 
         stage('Package'){
-            sh "pwd"
-            sh "ls -la"
-            sh "tar -czvf release.tar.gz -C build/ ."
+            steps {            
+                sh "pwd"
+                sh "ls -la"
+                sh "tar -czvf release.tar.gz -C build/ ."
+            }
         }        
     }
 
