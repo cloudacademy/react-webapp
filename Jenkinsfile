@@ -25,7 +25,7 @@ node {
     stage('HttpServer'){
         sh '''
             cd build
-            http-server . > /dev/null 2>&1 &
+            http-server -p 9000. > /dev/null 2>&1 &
         '''
     }
 
