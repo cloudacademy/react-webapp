@@ -19,7 +19,7 @@ node {
     }
 
     stage('TestingTools'){
-        sh "yarn add jest jest-cli puppeteer faker http-server"
+        sh "yarn add jest jest-cli puppeteer faker"
     }
 
     stage('HttpServer'){
@@ -32,6 +32,7 @@ node {
     stage('Tests'){
         sh "curl -I http://localhost:8081/"
         sh "yarn test --detectOpenHandles"
+        sh "echo done!!!"
     }
     
 }
