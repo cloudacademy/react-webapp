@@ -53,7 +53,7 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: 'release.tar.gz', fingerprint: true,
+            archiveArtifacts artifacts: 'release.tar.gz', fingerprint: true
             publishHTML (target: [
                 allowMissing: false,
                 alwaysLinkToLastBuild: false,
