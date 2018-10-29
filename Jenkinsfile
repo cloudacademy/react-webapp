@@ -22,19 +22,13 @@ node {
         sh "yarn add jest jest-cli puppeteer faker"
     }
 
-    stage('HttpServer'){
-        sh '''
-            cd build
-            http-server -p 9000. > /dev/null 2>&1 &
-        '''
-    }
-
-    stage('Tests'){
+    stage('HttpTests'){
+        sh "cd build"
+        sh "http-server -p 9000. > /dev/null 2>&1 &"
         sh "curl -I http://localhost:9000/"
         sh "yarn test --detectOpenHandles"
-        sh "echo done!!!"
+        sh "echo done!!!"        
     }
-    
 }
 
 def imagePrune(containerName){
