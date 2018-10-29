@@ -22,8 +22,13 @@ node {
     }
 
     stage('Tests'){
-        sh "cd tests"
-        sh "node example.js"
+        sh '''
+            pwd
+            cd tests
+            pwd
+            ls -la
+            node example.js
+        '''
     }
     
 }
