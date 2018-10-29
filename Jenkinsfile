@@ -20,6 +20,12 @@ node {
     stage('Puppeteer'){
         sh "yarn add puppeteer"
     }
+
+    stage('Tests'){
+        sh "cd tests"
+        sh "node example.js"
+    }
+    
 }
 
 def imagePrune(containerName){
