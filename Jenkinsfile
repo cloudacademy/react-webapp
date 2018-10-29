@@ -54,14 +54,14 @@ pipeline {
     post {
         always {
             archiveArtifacts artifacts: 'release.tar.gz', fingerprint: true,
-            publishHTML target: [
+            publishHTML (target: [
                 allowMissing: false,
                 alwaysLinkToLastBuild: false,
                 keepAll: true,
                 reportDir: 'output/coverage/jest',
                 reportFiles: 'index.html',
                 reportName: 'Test Report'
-            ]            
+            ])
         }
     }    
 }
