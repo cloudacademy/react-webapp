@@ -30,7 +30,7 @@ node {
     }
 
     stage('Tests'){
-        sh "curl -I http://localhost:8081/"
+        sh "curl -I http://localhost:9000/"
         sh "yarn test --detectOpenHandles"
         sh "echo done!!!"
     }
