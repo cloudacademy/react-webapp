@@ -17,9 +17,13 @@ node {
         sh "yarn install"
     }
 
-    stage('Echo'){
-        sh "echo Blah!"
+    stage('Echo1'){
+        sh "echo Blah1!"
     }
+
+    stage('Echo2'){
+        sh "echo Blah2!"
+    } 
 }
 
 def imagePrune(containerName){
