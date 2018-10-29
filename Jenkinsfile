@@ -18,11 +18,19 @@ node {
     }
 
     stage('TestingTools'){
-        sh "yarn add jest jest-cli puppeteer faker"
+        sh "yarn add jest jest-cli puppeteer faker http-server"
+    }
+
+    stage('HttpServer'){
+        sh '''
+            cd build
+            http-server
+        '''
     }
 
     stage('Tests'){
-        sh "yarn test"
+        sh "curl -I http://localhost:8081/"
+        sh "yarn test --detectOpenHandles"
     }
     
 }

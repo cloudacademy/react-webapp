@@ -13,7 +13,7 @@ describe("H1 Text", () => {
     "h1 loads correctly",
     async () => {
       let browser = await puppeteer.launch({
-        headless: false
+        headless: true
       });
       let page = await browser.newPage();
 
@@ -25,11 +25,11 @@ describe("H1 Text", () => {
         userAgent: ""
       });
 
-      await page.goto("http://localhost:3002/");
-      await page.waitForSelector(".App-title");
+      await page.goto("http://127.0.0.1:8081/");
+      await page.waitForSelector("title");
 
-      const html = await page.$eval(".App-title", e => e.innerHTML);
-      expect(html).toBe("Welcome to React");
+      const html = await page.$eval("title", e => e.innerHTML);
+      expect(html).toBe("React App");
 
       browser.close();
     },
