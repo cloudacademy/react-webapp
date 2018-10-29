@@ -28,6 +28,7 @@ node {
             pwd
             ls -la
             node example.js
+            echo finished!!
         '''
     }
     
