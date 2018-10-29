@@ -25,7 +25,8 @@ node {
     stage('HttpTests'){
         sh "cd build"
         sh "http-server -p 9000. > /dev/null 2>&1 &"
-        sh "curl -I http://localhost:9000/"
+        sh "sleep 10"
+        sh "curl -s -I http://localhost:9000/"
         sh "yarn test --detectOpenHandles"
         sh "echo done!!!"        
     }
