@@ -17,19 +17,12 @@ node {
         sh "yarn install"
     }
 
-    stage('Puppeteer'){
-        sh "yarn add puppeteer"
+    stage('TestingTools'){
+        sh "yarn add jest jest-cli puppeteer faker"
     }
 
     stage('Tests'){
-        sh '''
-            pwd
-            cd tests
-            pwd
-            ls -la
-            node example.js
-            echo finished!!
-        '''
+        sh "yarn test"
     }
     
 }
