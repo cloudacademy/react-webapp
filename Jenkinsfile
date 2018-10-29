@@ -15,6 +15,7 @@ node {
 
     stage('Build'){
         sh "yarn install"
+        sh "yarn build"
     }
 
     stage('TestingTools'){
