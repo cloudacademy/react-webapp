@@ -8,31 +8,27 @@ const person = {
   message: faker.random.words()
 };
 
-describe("H1 Text", () => {
-  test(
-    "h1 loads correctly",
-    async () => {
-      let browser = await puppeteer.launch({
-        headless: true
-      });
-      let page = await browser.newPage();
+describe("Title Text", () => {
+  test("title loads correctly", async () => {
+    let browser = await puppeteer.launch({
+      headless: true
+    });
+    let page = await browser.newPage();
 
-      page.emulate({
-        viewport: {
-          width: 500,
-          height: 2400
-        },
-        userAgent: ""
-      });
+    page.emulate({
+      viewport: {
+        width: 500,
+        height: 2400
+      },
+      userAgent: ""
+    });
 
-      await page.goto("http://localhost:9000/");
-      await page.waitForSelector("title");
+    await page.goto("http://localhost:9000/");
+    await page.waitForSelector("title");
 
-      const html = await page.$eval("title", e => e.innerHTML);
-      expect(html).toBe("React App");
+    const html = await page.$eval("title", e => e.innerHTML);
+    expect(html).toBe("React App");
 
-      browser.close();
-    },
-    16000
-  );
+    browser.close();
+  }, 16000);
 });
