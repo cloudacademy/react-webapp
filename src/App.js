@@ -17,7 +17,7 @@ class App extends Component {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Learn React - Jeremy Cook v5
+            WeatherApp 2019
           </a>
         </header>
       </div>
