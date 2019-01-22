@@ -16,7 +16,9 @@ pipeline {
 
         stage('HttpTests'){
             steps {            
-                sh "cd build"
+                sh "pwd"
+                sh "mkdir screenshots"
+                sh "cd build"                
                 sh "http-server -p 9000. > /dev/null 2>&1 &"
                 sh "sleep 5"
                 sh "curl -s -I http://localhost:9000/"
