@@ -17,8 +17,10 @@ class App extends Component {
             target="_blank"
             rel="noopener noreferrer"
           >
-            WeatherApp 2019
           </a>
+          <h3>
+            CloudAcademy ❤ DevOps 2019
+          </h3>
         </header>
       </div>
     );
