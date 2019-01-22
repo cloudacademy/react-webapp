@@ -14,6 +14,12 @@ pipeline {
             }
         }
 
+        stage('JestTests'){
+            steps {            
+                sh "yarn test --detectOpenHandles"
+            }
+        }
+
         stage('HttpTests'){
             steps {            
                 sh "cd build"
@@ -21,7 +27,6 @@ pipeline {
                 sh "sleep 5"
                 sh "curl -s -I http://localhost:9000/"
                 sh "yarn test --detectOpenHandles"
-                sh "echo done!!!"        
             }
         }
 
