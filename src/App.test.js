@@ -15,7 +15,7 @@ describe("Title Text", () => {
     });
     let page = await browser.newPage();
 
-    await page.goto("http://localhost:9000/");
+    await page.goto("http://localhost:9000/index.html");
     await page.screenshot({ path: "index.png" });
     await page.waitForSelector("title");
     
