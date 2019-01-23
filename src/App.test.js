@@ -15,22 +15,13 @@ describe("Title Text", () => {
     });
     let page = await browser.newPage();
 
-    page.emulate({
-      viewport: {
-        width: 500,
-        height: 2400
-      },
-      userAgent: ""
-    });
-
     await page.goto("http://localhost:9000/");
+    await page.screenshot({ path: "index.png" });
     await page.waitForSelector("title");
     
-
     const html = await page.$eval("title", e => e.innerHTML);
     expect(html).toBe("React App");
 
-    await page.screenshot({ path: "index.png" });
     browser.close();
   }, 16000);
 });
