@@ -48,6 +48,7 @@ pipeline {
                 reportFiles: 'index.html',
                 reportName: 'Test Report'
             ])
+            cleanWs()
         }
     }    
 }
