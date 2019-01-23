@@ -11,7 +11,7 @@ const person = {
 describe("Title Text", () => {
   test("title loads correctly", async () => {
     let browser = await puppeteer.launch({
-      headless: false
+      headless: true
     });
     let page = await browser.newPage();
 
@@ -25,7 +25,7 @@ describe("Title Text", () => {
 
     await page.goto("http://localhost:9000/");
     await page.waitForSelector("title");
-    await page.screenshot({ path: "index.png" });
+    //await page.screenshot({ path: "index.png" });
 
     const html = await page.$eval("title", e => e.innerHTML);
     expect(html).toBe("React App");
