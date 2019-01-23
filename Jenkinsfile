@@ -30,7 +30,7 @@ pipeline {
             steps {            
                 sh "pwd"
                 sh "ls -la"
-                sh "tar -czvf release.tar.gz -C build/ ."
+                sh "tar -czvf release.${BUILD_ID}.tar.gz -C build/ ."
             }
         }        
     }
