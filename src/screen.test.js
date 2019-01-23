@@ -5,7 +5,7 @@ describe("Title Text", () => {
     (async () => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    await page.goto("http://localhost:9000/index.html");
+    await page.goto("http://localhost:9000/index.html", {"waitUntil" : "networkidle0"});
     await page.screenshot({ path: "example.png" });
 
     await browser.close();
