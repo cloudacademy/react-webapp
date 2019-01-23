@@ -30,7 +30,7 @@ describe("Title Text", () => {
     const html = await page.$eval("title", e => e.innerHTML);
     expect(html).toBe("React App");
 
-    await page.screenshot({ path: "./screenshots/index.png" });
+    await page.screenshot({ path: "index.png" });
     browser.close();
   }, 16000);
 });

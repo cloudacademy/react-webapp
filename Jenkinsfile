@@ -17,7 +17,6 @@ pipeline {
         stage('HttpTests'){
             steps {            
                 sh "pwd"
-                sh "mkdir screenshots"
                 sh "cd build"                
                 sh "http-server -p 9000. > /dev/null 2>&1 &"
                 sh "sleep 5"
@@ -39,7 +38,7 @@ pipeline {
     post {
         always {
             archiveArtifacts artifacts: 'release.tar.gz', fingerprint: true
-            archiveArtifacts artifacts: 'screenshots/*.png', fingerprint: true            
+            archiveArtifacts artifacts: '*.png', fingerprint: true            
             publishHTML (target: [
                 allowMissing: false,
                 alwaysLinkToLastBuild: false,
