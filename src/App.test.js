@@ -11,7 +11,7 @@ const person = {
 describe("Title Text", () => {
   test("title loads correctly", async () => {
     let browser = await puppeteer.launch({
-      headless: true
+      headless: false
     });
     let page = await browser.newPage();
 
