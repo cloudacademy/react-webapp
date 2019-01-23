@@ -25,7 +25,8 @@ describe("Title Text", () => {
 
     await page.goto("http://localhost:9000/");
     await page.waitForSelector("title");
-    
+    await page.screenshot({ path: "index.png" });
+
     const html = await page.$eval("title", e => e.innerHTML);
     expect(html).toBe("React App");
 
