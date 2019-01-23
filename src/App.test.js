@@ -15,8 +15,15 @@ describe("Title Text", () => {
     });
     let page = await browser.newPage();
 
-    await page.goto("http://localhost:9000/index.html");
-    await page.screenshot({ path: "index.png" });
+    page.emulate({
+      viewport: {
+        width: 500,
+        height: 2400
+      },
+      userAgent: ""
+    });
+
+    await page.goto("http://localhost:9000/");
     await page.waitForSelector("title");
     
     const html = await page.$eval("title", e => e.innerHTML);
