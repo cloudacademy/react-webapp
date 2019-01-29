@@ -7,6 +7,12 @@
     "react-dom": "^16.5.2",
     "react-scripts": "2.0.5"
   },
+  "devDependencies": {
+    "faker": "^4.1.0",
+    "jest": "23.6.0",
+    "jest-cli": "23.6.0",
+    "puppeteer": "^1.11.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

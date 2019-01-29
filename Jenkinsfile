@@ -5,6 +5,8 @@ pipeline {
         }
     }
     stages {
+        def packageName = "release.${BUILD_ID}.tar.gz"
+
         stage('Build'){
             steps {            
                 sh "yarn install"
@@ -12,17 +14,11 @@ pipeline {
             }
         }
 
-        stage('TestingTools'){
-            steps {            
-                sh "yarn add jest jest-cli puppeteer faker"
-            }
-        }
-
-        stage('HttpTests'){
+        stage('Test'){
             steps {            
                 sh "pwd"
                 sh "cd build"                
-                sh "http-server -p 9000. > /dev/null 2>&1 &"
+                sh "http-server -p 9000 . > /dev/null 2>&1 &"
                 sh "sleep 5"
                 sh "curl -s -I http://localhost:9000/"
                 sh "yarn test --detectOpenHandles"
@@ -31,18 +27,17 @@ pipeline {
         }
 
         stage('Package'){
-            steps {            
+            steps {                
                 sh "pwd"
                 sh "ls -la"
-                sh "tar -czvf release.${BUILD_ID}.tar.gz -C build/ ."
+                sh "tar -czvf ${packageName} -C build/ ."
             }
         }        
     }
 
     post {
         always {
-            archiveArtifacts artifacts: "release.${BUILD_ID}.tar.gz", fingerprint: true
-            //archiveArtifacts artifacts: '*.png', fingerprint: true            
+            archiveArtifacts artifacts: packageName, fingerprint: true
             publishHTML (target: [
                 allowMissing: false,
                 alwaysLinkToLastBuild: false,
@@ -51,7 +46,6 @@ pipeline {
                 reportFiles: 'index.html',
                 reportName: 'Test Report'
             ])
-            //cleanWs()
         }
     }    
 }
