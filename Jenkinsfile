@@ -1,12 +1,14 @@
 pipeline {
-    def packageName = "release.${BUILD_ID}.tar.gz"
+    environment {
+        RELEASE_NAME = "release.${BUILD_ID}.tar.gz"
+    }
 
     agent {
         node {
             label 'agent1'
         }
     }
-    
+
     stages {        
         stage('Build'){
             steps {            
@@ -31,14 +33,14 @@ pipeline {
             steps {                
                 sh "pwd"
                 sh "ls -la"
-                sh "tar -czvf ${packageName} -C build/ ."
+                sh "tar -czvf ${RELEASE_NAME} -C build/ ."
             }
         }        
     }
 
     post {
         always {
-            archiveArtifacts artifacts: packageName, fingerprint: true
+            archiveArtifacts artifacts: "${RELEASE_NAME}", fingerprint: true
             publishHTML (target: [
                 allowMissing: false,
                 alwaysLinkToLastBuild: false,
