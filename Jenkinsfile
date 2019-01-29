@@ -1,12 +1,13 @@
 pipeline {
+    def packageName = "release.${BUILD_ID}.tar.gz"
+
     agent {
         node {
             label 'agent1'
         }
     }
-    stages {
-        def packageName = "release.${BUILD_ID}.tar.gz"
-
+    
+    stages {        
         stage('Build'){
             steps {            
                 sh "yarn install"
