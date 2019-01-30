@@ -20,13 +20,6 @@ pipeline {
                 sh "yarn install"
                 sh "yarn build"
             }
-
-            post {
-                success {
-                    // Archive the built artifacts
-                    archiveArtifacts artifacts: "./build/${RELEASE_NAME}", fingerprint: true
-                }
-            }            
         }
 
         stage('Test'){
@@ -62,6 +55,13 @@ pipeline {
                 sh "ls -la"
                 sh "tar -czvf ${RELEASE_NAME} -C build/ ."
             }
+
+            post {
+                success {
+                    // Archive the built artifacts
+                    archiveArtifacts artifacts: "${RELEASE_NAME}", fingerprint: true
+                }
+            }            
         }        
     }
 
