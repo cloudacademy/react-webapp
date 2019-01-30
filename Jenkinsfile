@@ -24,7 +24,7 @@ pipeline {
             post {
                 success {
                     // Archive the built artifacts
-                    archiveArtifacts artifacts: "${RELEASE_NAME}", fingerprint: true
+                    archiveArtifacts artifacts: "./build/${RELEASE_NAME}", fingerprint: true
                 }
             }            
         }
