@@ -9,12 +9,24 @@ pipeline {
         }
     }
 
+    options {
+        // Only keep the 10 most recent builds
+        buildDiscarder(logRotator(numToKeepStr:'10'))
+    }
+
     stages {        
         stage('Build'){
             steps {            
                 sh "yarn install"
                 sh "yarn build"
             }
+
+            post {
+                success {
+                    // Archive the built artifacts
+                    archiveArtifacts artifacts: "${RELEASE_NAME}", fingerprint: true
+                }
+            }            
         }
 
         stage('Test'){
@@ -28,6 +40,20 @@ pipeline {
                 sh "yarn test --detectOpenHandles"
                 sh "echo done!!!"        
             }
+
+            post {
+                success {
+                    // publish html
+                    publishHTML target: [
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: false,
+                        keepAll: true,
+                        reportDir: 'output/coverage/jest',
+                        reportFiles: 'index.html',
+                        reportName: 'Test Report'
+                    ]
+                }
+            }            
         }
 
         stage('Package'){
@@ -41,15 +67,7 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: "${RELEASE_NAME}", fingerprint: true
-            publishHTML (target: [
-                allowMissing: false,
-                alwaysLinkToLastBuild: false,
-                keepAll: true,
-                reportDir: 'output/coverage/jest',
-                reportFiles: 'index.html',
-                reportName: 'Test Report'
-            ])
+            echo "Build completed!!"
         }
     }    
 }
