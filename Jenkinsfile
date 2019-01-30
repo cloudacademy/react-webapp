@@ -20,10 +20,11 @@ pipeline {
         stage('Test'){
             steps {            
                 sh "pwd"
-                sh "cd build"                
+                sh "cd build"
+                sh "ls -la"                
                 sh "http-server -p 9000 . > /dev/null 2>&1 &"
                 sh "sleep 5"
-                sh "curl -s -I http://localhost:9000/"
+                sh "curl -I http://localhost:9000/index.html"
                 sh "yarn test --detectOpenHandles"
                 sh "echo done!!!"        
             }
